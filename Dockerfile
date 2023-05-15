@@ -1,26 +1,35 @@
-# Stage 1: Base Image
-FROM node:16-alpine AS base
+FROM node:16-alpine
 
-ARG PORT=4000
-EXPOSE ${PORT}
+EXPOSE 4000
 
-# Install dependencies for production
+COPY . /app
+WORKDIR /app
+
 RUN corepack enable
 RUN yarn install:prod
 
-# Stage 2: Build Image
-FROM base AS build
-
-COPY . /app
-
-ARG VERSION=latest
-FROM browserless/chrome:$VERSION
+RUN apk add libnss3\                         
+            libnspr4\                                    
+            libatk1.0-0\                                 
+            libatk-bridge2.0-0\                          
+            libcups2\                                    
+            libdrm2\                                     
+            libdbus-1-3\                                 
+            libxcb1\                                     
+            libxkbcommon0\                               
+            libatspi2.0-0\                               
+            libx11-6\                                    
+            libxcomposite1\                              
+            libxdamage1\                                 
+            libxext6\                                    
+            libxfixes3\                                  
+            libxrandr2\                                  
+            libgbm1\                                     
+            libpango-1.0-0\                              
+            libcairo2\                                   
+            libasound2\
 
 RUN yarn build
 
-# Stage 3: Final Image
-FROM base AS final
-
-COPY --from=build /app /app
-
+LABEL Name="responsive-snap-backend" Version="1.0.0"
 CMD ["yarn", "deploy"]
