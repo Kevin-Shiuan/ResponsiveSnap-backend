@@ -1,4 +1,4 @@
-FROM playwright/docker:base
+FROM mcr.microsoft.com/playwright:v1.33.0-jammy
 
 EXPOSE 4000
 
