@@ -14,13 +14,11 @@
   },
   "dependencies": {
     "buffer-image-size": "^0.6.4",
-    "capture-website": "^3.2.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "node-cron": "^3.0.2",
-    "phantomjs-prebuilt": "^2.1.16",
-    "split-images": "^1.0.4",
-    "url-to-screenshot": "^3.0.0"
+    "playwright": "^1.33.0",
+    "split-images": "^1.0.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",

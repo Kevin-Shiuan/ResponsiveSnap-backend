@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import snapOne from './screenshot.js';
+// import snapOne from './screenshot.js';
 import verify from './verify.js';
+import screenshot from './screen-capture/screenshot.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -39,7 +40,9 @@ app.get('/serverStatus', (req, res) => {
 app.post('/snap', async (req, res) => {
   if (!verify(req)) return res.send('Access granted and denied!');
   // console.log('Access allowed');
-  const data = await snapOne(req.body);
+  // const data = await snapOne(req.body);
+  const data = await screenshot({...req.body, settings: req.body.arrData});
+  // const newData = { ...data, snap_data: snap_data };
   res.set('Access-Control-Allow-Origin', '*');
   res.send(JSON.stringify(data));
 });
