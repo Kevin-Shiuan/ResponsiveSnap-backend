@@ -9,7 +9,7 @@
   "scripts": {
     "server": "nodemon src/index.ts --exec 'ts-node --esm' --extensions '.ts'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf ./dist && yarn && yarn playwright install-deps && tsc",
+    "build": "rm -rf ./dist && yarn && tsc",
     "deploy": "node ./dist/index.js"
   },
   "dependencies": {
