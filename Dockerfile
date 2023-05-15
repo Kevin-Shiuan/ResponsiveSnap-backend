@@ -1,12 +1,10 @@
-FROM node:16-alpine
+ARG VERSION=latest
+FROM browserless/chrome:$VERSION
 
 EXPOSE ${PORT}
 
 COPY . /app
 WORKDIR /app
-
-ARG VERSION=latest
-FROM browserless/chrome:$VERSION
 
 RUN corepack enable
 RUN yarn install:prod
