@@ -16,7 +16,7 @@
     "esModuleInterop": true,
     // Skips type-checking of default library declaration files
     "skipLibCheck": true,
-    // "outDir": "./dist",
+    "outDir": "./dist",
     // "rootDir": "./src"
     "typeRoots": ["../node_modules/@types", "../src/@types"]
   },
