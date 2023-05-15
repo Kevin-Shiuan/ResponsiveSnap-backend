@@ -7,9 +7,10 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "install:prod": "yarn install --freeze-lockfile",
     "server": "nodemon src/index.ts --exec 'ts-node --esm' --extensions '.ts'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf ./dist && yarn npx playwright install-deps  && tsc",
+    "build": "tsc",
     "deploy": "node ./dist/index.js"
   },
   "dependencies": {
