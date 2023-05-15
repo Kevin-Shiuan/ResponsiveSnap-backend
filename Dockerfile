@@ -8,27 +8,7 @@ WORKDIR /app
 RUN corepack enable
 RUN yarn install:prod
 
-aptPkgs = ["...", "libnss3"]
-aptPkgs = ["...", "libnspr4"]
-aptPkgs = ["...", "libatk1.0-0"]
-aptPkgs = ["...", "libatk-bridge2.0-0"]
-aptPkgs = ["...", "libcups2"]
-aptPkgs = ["...", "libdrm2"]
-aptPkgs = ["...", "libdbus-1-3"]
-aptPkgs = ["...", "libxcb1"]
-aptPkgs = ["...", "libxkbcommon0"]
-aptPkgs = ["...", "libatspi2.0-0"]
-aptPkgs = ["...", "libx11-6"]
-aptPkgs = ["...", "libxcomposite1"]
-
-aptPkgs = ["...", "libxdamage1"]
-aptPkgs = ["...", "libxext6"]
-aptPkgs = ["...", "libxfixes3"]
-aptPkgs = ["...", "libxrandr2"]
-aptPkgs = ["...", "libgbm1"]
-aptPkgs = ["...", "libpango-1.0-0"]
-aptPkgs = ["...", "libcairo2"]
-aptPkgs = ["...", "libasound2"]
+RUN apt-get install libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libdbus-1-3 libxcb1 libxkbcommon0 libatspi2.0-0 libx11-6 libxcomposite1 libxdamage1 libxext6 libxfixes3 libxrandr2 libgbm1 libpango-1.0-0 libcairo2 libasound2
 RUN yarn build
 
 LABEL Name="responsive-snap-backend" Version="1.0.0"
