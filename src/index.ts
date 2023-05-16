@@ -20,28 +20,22 @@ app.options('*', cors());
 app.get('/', (req, res) => {
   console.log('get request: /');
   res.set('Access-Control-Allow-Origin', '*');
-  res.send('Server is running!');
+  res.send(
+    'This is the backend server for responsive-snap, which is a Figma plugin for you to take screenshots of a webpage in different screen sizes. You can visit the page https://www.figma.com/community/plugin/1205868823812750536 to learn more.'
+  );
 });
 
-app.get('/serverStatus', (req, res) => {
-  console.log('get request: /serverStatus');
+app.get('/server-status', (req, res) => {
+  console.log('server status: running');
   res.set('Access-Control-Allow-Origin', '*');
   res.send(JSON.stringify({ msg: 'Server is running!' }));
 });
 
-// app.post('/', async (req, res) => {
-//   if (!verify(req)) return res.send('Access granted and denied!');
-//   // console.log('Access allowed');
-//   res.set('Access-Control-Allow-Origin', '*');
-//   const data = await snapMultiple(req.body);
-//   res.send(JSON.stringify(data));
-// });
-
 app.post('/snap', async (req, res) => {
-  if (!verify(req)) return res.send('Access granted and denied!');
+  if (!verify(req)) return res.send(JSON.stringify({ msg: 'Access denied!' }));
   // console.log('Access allowed');
   // const data = await snapOne(req.body);
-  const data = await screenshot({...req.body, settings: req.body.arrData});
+  const data = await screenshot(req.body);
   // const newData = { ...data, snap_data: snap_data };
   res.set('Access-Control-Allow-Origin', '*');
   res.send(JSON.stringify(data));
