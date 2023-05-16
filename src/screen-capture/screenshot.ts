@@ -59,6 +59,7 @@ export default async function snapOne(params: Params) {
     const page = await context.newPage();
     await page.goto(params.URL);
     const img_unit8Arr = await page.screenshot({ timeout: 0, fullPage: false });
+    await browser.close();
 
     // check if buffer is Uint8Array
     // console.log(img_unit8Arr instanceof Uint8Array);
