@@ -65,7 +65,8 @@ export default async function snapOne(params: Params) {
     // console.log(img_unit8Arr instanceof Uint8Array);
     const dim = sizeOf(img_unit8Arr);
     const screen = params.settings.emulateDevice ? params.settings.emulateDevice : `${dim.width}x${dim.height}`;
-
+    console.log('\n '+ screen + ' screenshot success');
+    
     return {
       name: params.URL.replace(/.+\/\/|www.|\..+/g, '') + ', view in ' + screen,
       width: dim.width,
