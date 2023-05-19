@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-// import snapOne from './screenshot.js';
 import verify from './utils/verify.js';
 import screenshot from './screen-capture/screenshot.js';
 
