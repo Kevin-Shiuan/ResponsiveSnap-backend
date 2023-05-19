@@ -2,14 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import verify from './utils/verify.js';
 import screenshot from './screen-capture/screenshot.js';
-// import monitor from 'express-status-monitor';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
-// app.use(monitor());
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}, http://localhost:${PORT}`);

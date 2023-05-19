@@ -1,7 +1,5 @@
 FROM mcr.microsoft.com/playwright:v1.33.0-jammy
 
-EXPOSE 4000
-
 COPY . /app
 WORKDIR /app
 
