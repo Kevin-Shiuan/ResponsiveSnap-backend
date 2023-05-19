@@ -1,4 +1,4 @@
-import { firefox, devices } from 'playwright';
+import { chromium, devices } from 'playwright';
 import uint8ArrayToString from '../utils/uint8ArrayToString.js';
 import sizeOf from 'buffer-image-size';
 import isValidSettings from '../utils/verifySettings.js';
@@ -49,7 +49,7 @@ export default async function snapOne(params: Params) {
     // console.log(device);
     // console.log('\nviewport: ');
     // console.log(viewport);
-    const browser = await firefox.launch();
+    const browser = await chromium.launch();
     const context = await browser.newContext({
       ...device,
       viewport,
