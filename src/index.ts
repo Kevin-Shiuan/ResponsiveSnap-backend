@@ -37,7 +37,7 @@ app.post('/snap', async (req, res) => {
   if (!verify(req)) {
     console.log('\nDenying access of: ');
     console.log(req.body);
-    return res.send(JSON.stringify({ msg: 'Access denied!' }));
+    return res.send(JSON.stringify({ errMsg: 'You are not a Figma user right, are you?' }));
   }
   const data = await screenshot(req.body);
   res.set('Access-Control-Allow-Origin', '*');
