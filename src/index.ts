@@ -1,13 +1,16 @@
 import express from 'express';
 import cors from 'cors';
+import expressQueue from 'express-queue';
 import verify from './utils/verify.js';
 import screenshot from './screen-capture/screenshot.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+const lineUp = expressQueue({ activeLimit: 1, queuedLimit: 50 });
 
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
+app.use(lineUp);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}, http://localhost:${PORT}`);
@@ -25,9 +28,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/server-status', (req, res) => {
-  console.log('server status: running');
+  console.log('Oh dang, someone is checking the server status');
   res.set('Access-Control-Allow-Origin', '*');
-  res.send(JSON.stringify({ msg: 'Server is running!' }));
+  res.send(JSON.stringify({ msg: 'server is running' }));
 });
 
 app.post('/snap', async (req, res) => {
