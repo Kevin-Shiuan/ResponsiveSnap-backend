@@ -1,4 +1,4 @@
-import { chromium, devices } from 'playwright';
+import { webkit, devices } from 'playwright';
 import uint8ArrayToString from '../utils/uint8ArrayToString.js';
 import sizeOf from 'buffer-image-size';
 import isValidSettings from '../utils/verifySettings.js';
@@ -27,7 +27,6 @@ export default async function snapOne(params: Params) {
       return { msg: 'invalid settings' };
     }
 
-    const browser = await chromium.launch();
     const device = params.settings.emulateDevice ? devices[params.settings.emulateDevice] : null;
     const deviceScreen = device ? JSON.parse(JSON.stringify(device)).screen : null;
 
@@ -50,7 +49,7 @@ export default async function snapOne(params: Params) {
     // console.log(device);
     // console.log('\nviewport: ');
     // console.log(viewport);
-
+    const browser = await webkit.launch();
     const context = await browser.newContext({
       ...device,
       viewport,
@@ -61,8 +60,8 @@ export default async function snapOne(params: Params) {
     const img_unit8Arr = await page.screenshot({ timeout: 0, fullPage: false });
 
     // releasing resources
-    await page.close();
-    await context.close();
+    // await page.close();
+    // await context.close();
     await browser.close();
 
     // check if buffer is Uint8Array
