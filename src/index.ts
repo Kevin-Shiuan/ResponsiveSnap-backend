@@ -36,10 +36,7 @@ app.post('/snap', async (req, res) => {
     console.log(req.body);
     return res.send(JSON.stringify({ msg: 'Access denied!' }));
   }
-  // console.log('Access allowed');
-  // const data = await snapOne(req.body);
   const data = await screenshot(req.body);
-  // const newData = { ...data, snap_data: snap_data };
   res.set('Access-Control-Allow-Origin', '*');
   res.send(JSON.stringify(data));
 });
