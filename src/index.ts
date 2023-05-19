@@ -32,7 +32,11 @@ app.get('/server-status', (req, res) => {
 });
 
 app.post('/snap', async (req, res) => {
-  if (!verify(req)) return res.send(JSON.stringify({ msg: 'Access denied!' }));
+  if (!verify(req)) {
+    console.log('\nDenying access of: ');
+    console.log(req.body);
+    return res.send(JSON.stringify({ msg: 'Access denied!' }));
+  }
   // console.log('Access allowed');
   // const data = await snapOne(req.body);
   const data = await screenshot(req.body);
