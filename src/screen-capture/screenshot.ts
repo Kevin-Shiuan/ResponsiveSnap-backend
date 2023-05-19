@@ -59,14 +59,18 @@ export default async function snapOne(params: Params) {
     const page = await context.newPage();
     await page.goto(params.URL);
     const img_unit8Arr = await page.screenshot({ timeout: 0, fullPage: false });
+
+    // releasing resources
+    await page.close();
+    await context.close();
     await browser.close();
 
     // check if buffer is Uint8Array
     // console.log(img_unit8Arr instanceof Uint8Array);
     const dim = sizeOf(img_unit8Arr);
     const screen = params.settings.emulateDevice ? params.settings.emulateDevice : `${dim.width}x${dim.height}`;
-    console.log('\n '+ screen + ' screenshot success');
-    
+    console.log('\n ' + screen + ' screenshot success');
+
     return {
       name: params.URL.replace(/.+\/\/|www.|\..+/g, '') + ', view in ' + screen,
       width: dim.width,
