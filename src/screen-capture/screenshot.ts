@@ -24,7 +24,7 @@ export default async function snapOne(params: Params) {
     if (!isValidSettings(params.settings)) {
       console.log('\ninvalid settings: ');
       console.log(params.settings);
-      return { msg: 'invalid settings' };
+      return { errMsg: 'invalid settings' };
     }
 
     const device = params.settings.emulateDevice ? devices[params.settings.emulateDevice] : null;
@@ -81,7 +81,7 @@ export default async function snapOne(params: Params) {
     console.log(params);
     console.log(e);
     return {
-      msg: 'screenshot failed',
+      errMsg: 'screenshot failed',
       error: e,
     };
   }
