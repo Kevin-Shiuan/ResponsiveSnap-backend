@@ -11,7 +11,7 @@
     "server": "nodemon src/index.ts --exec 'ts-node --esm' --extensions '.ts'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "deploy": "yarn start"
+    "deploy": "node ./dist/index.js"
   },
   "dependencies": {
     "buffer-image-size": "^0.6.4",
