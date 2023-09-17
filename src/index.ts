@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import expressQueue from 'express-queue';
-import verify from './utils/verify.js';
-import screenshot from './screen-capture/screenshot.js';
+import verify from './utils/verify';
+import screenshot from './screen-capture/screenshot';
 
 const app = express();
 const PORT = process.env.PORT || 4000;

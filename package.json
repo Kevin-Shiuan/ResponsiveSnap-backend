@@ -5,13 +5,14 @@
   "exports": "./index.js",
   "author": "KevinShiuan",
   "license": "MIT",
-  "type": "module",
+
   "scripts": {
     "install:prod": "yarn install --freeze-lockfile",
-    "server": "nodemon src/index.ts --exec 'ts-node --esm' --extensions '.ts'",
+    "server": "nodemon src/index.ts --exec 'ts-node' --extensions '.ts'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "deploy": "node ./dist/index.js"
+    "deploy": "node ./dist/index.js",
+    "start": "ts-node ./src/index.ts"
   },
   "dependencies": {
     "buffer-image-size": "^0.6.4",

@@ -1,7 +1,7 @@
 import { chromium, devices } from 'playwright';
-import uint8ArrayToString from '../utils/uint8ArrayToString.js';
+import uint8ArrayToString from '../utils/uint8ArrayToString';
 import sizeOf from 'buffer-image-size';
-import isValidSettings from '../utils/verifySettings.js';
+import isValidSettings from '../utils/verifySettings';
 
 interface Params {
   URL: string;
