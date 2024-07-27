@@ -4,7 +4,7 @@ interface Settings {
   emulateDevice: string;
   fullpage: boolean;
 }
-export default function isValidSettings(settings: Settings) {
+export default function checkDeviceSettings(settings: Settings) {
   if (settings.emulateDevice === '') {
     return isValidScreenSize(settings);
   }

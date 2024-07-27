@@ -1,7 +1,7 @@
 import { chromium, devices } from 'playwright';
 import uint8ArrayToString from '../utils/uint8ArrayToString';
 import sizeOf from 'buffer-image-size';
-import isValidSettings from '../utils/checkDeviceSettings';
+import checkDeviceSettings from '../utils/checkDeviceSettings';
 
 interface Params {
   URL: string;
@@ -21,7 +21,7 @@ export default async function snapOne(params: Params) {
     console.log('\nuser ' + params.userId + ' is using the service, with settings: ');
     console.log(params.settings);
 
-    if (!isValidSettings(params.settings)) {
+    if (!checkDeviceSettings(params.settings)) {
       console.log('\ninvalid settings: ');
       console.log(params.settings);
       return { errMsg: 'invalid settings' };
