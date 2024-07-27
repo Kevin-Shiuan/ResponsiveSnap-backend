@@ -23,21 +23,27 @@ app.get('/', (req, res) => {
   console.log('get request: /');
   res.set('Access-Control-Allow-Origin', '*');
   res.send(
-    'This is the backend server for responsive-snap, which is a Figma plugin for you to take screenshots of a webpage in different screen sizes. You can visit the page https://www.figma.com/community/plugin/1205868823812750536 to learn more.'
+    JSON.stringify({
+      message:
+        'Welcome to the backend server for ResponsiveScreenshot! ResponsiveScreenshot is a Figma plugin designed to help you capture screenshots of webpages across various screen sizes. To learn more and start using the plugin, visit our Figma community page: https://www.figma.com/community/plugin/1205868823812750536.',
+    })
   );
 });
 
 app.get('/server-status', (req, res) => {
-  console.log('Oh dang, someone is checking the server status');
+  const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  const userAgent = req.get('User-Agent');
+  console.log(`Server status checked by IP: ${clientIp}, User-Agent: ${userAgent}`);
+
   res.set('Access-Control-Allow-Origin', '*');
-  res.send(JSON.stringify({ msg: 'server is running' }));
+  res.send(JSON.stringify({ message: 'server is running' }));
 });
 
 app.post('/snap', async (req, res) => {
   if (!verify(req)) {
-    console.log('\nDenying access of: ');
-    console.log(req.body);
-    return res.send(JSON.stringify({ errMsg: 'You are not a Figma user right, are you?' }));
+    console.log('\nDenying access for:', req.body);
+    res.set('Access-Control-Allow-Origin', '*');
+    return res.status(403).json({ error: 'You are not a verified Figma user.' });
   }
   const data = await screenshot(req.body);
   res.set('Access-Control-Allow-Origin', '*');
