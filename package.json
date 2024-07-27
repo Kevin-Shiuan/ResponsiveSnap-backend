@@ -5,7 +5,6 @@
   "exports": "./index.js",
   "author": "KevinShiuan",
   "license": "MIT",
-
   "scripts": {
     "install:prod": "yarn install --freeze-lockfile",
     "server": "nodemon src/index.ts --exec 'ts-node' --extensions '.ts'",

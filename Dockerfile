@@ -11,5 +11,5 @@ RUN yarn cache clean
 WORKDIR /app
 RUN rm -rf src
 
-LABEL Name="responsive-snap-backend" Version="1.0.0"
+LABEL Name="responsive-snap-backend" Version="2.0.0"
 CMD ["yarn", "deploy"]
