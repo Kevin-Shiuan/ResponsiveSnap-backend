@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import expressQueue from 'express-queue';
-import verify from './utils/verify';
+import verify from './utils/verifyFigmaUser';
 import screenshot from './screen-capture/screenshot';
 
 const app = express();
