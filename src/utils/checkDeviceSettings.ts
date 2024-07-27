@@ -1,5 +1,5 @@
 import { DeviceSettings } from '../../types'
-import { ALL_DEVICES } from '../constants/devices'
+import { SUPPORTED_DEVICES } from '../constants/devices'
 
 const MAX_WIDTH = 4096
 const MIN_WIDTH = 360
@@ -26,5 +26,5 @@ const isValidScreenSize = ({ width, height, fullPage }: Omit<DeviceSettings, 'em
 }
 
 const isValidDevice = (emulateDevice: DeviceSettings['emulateDevice']) => {
-  return ALL_DEVICES.includes(emulateDevice)
+  return SUPPORTED_DEVICES.includes(emulateDevice)
 }
