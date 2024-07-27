@@ -1,23 +1,19 @@
-interface Settings {
-  width: number;
-  height: number;
-  emulateDevice: string;
-  fullpage: boolean;
-}
-export default function checkDeviceSettings(settings: Settings) {
+import { DeviceSettings } from '../../types'
+
+export default function checkDeviceSettings(settings: DeviceSettings) {
   if (settings.emulateDevice === '') {
-    return isValidScreenSize(settings);
+    return isValidScreenSize(settings)
   }
-  return isValidDevice(settings);
+  return isValidDevice(settings)
 }
 
-const isValidScreenSize = (settings: Settings) => {
-  return settings.height >= 360 || settings.width >= 360;
-};
+const isValidScreenSize = (settings: DeviceSettings) => {
+  return settings.height >= 360 || settings.width >= 360
+}
 
-const isValidDevice = (settings: Settings) => {
-  return knowDevices.includes(settings.emulateDevice);
-};
+const isValidDevice = (settings: DeviceSettings) => {
+  return knowDevices.includes(settings.emulateDevice)
+}
 
 const knowDevices = [
   'iPad (gen 7)',
@@ -45,5 +41,5 @@ const knowDevices = [
   'iPhone 13 Mini',
   'iPhone 13 Mini landscape',
   'Pixel 5',
-  'Pixel 5 landscape',
-];
+  'Pixel 5 landscape'
+]
