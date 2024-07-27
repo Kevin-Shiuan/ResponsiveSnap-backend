@@ -1,7 +1,7 @@
 import { chromium, devices } from 'playwright'
-import uint8ArrayToString from '../utils/uint8ArrayToString'
+import { uint8ArrayToString } from '../utils/imageProcessing'
+import { checkDeviceSettings } from '../utils/deviceSettings'
 import sizeOf from 'buffer-image-size'
-import checkDeviceSettings from '../utils/checkDeviceSettings'
 import { DeviceSettings } from '../../types'
 
 interface Params {
