@@ -43,7 +43,7 @@ export default async function takeScreenshot({ url, userId, settings }: Params) 
     await page.goto(url)
     if (isFullPage) {
       await page.evaluate(() => window.scrollBy(0, document.body.scrollHeight))
-      // await page.evaluate(() => window.scrollBy(0, -document.body.scrollHeight))
+      await page.evaluate(() => window.scrollBy(0, -document.body.scrollHeight))
       await page.waitForTimeout(3000)
     }
     const imgBuffer = await page.screenshot({ fullPage: isFullPage })
