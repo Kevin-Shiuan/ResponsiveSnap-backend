@@ -4,6 +4,7 @@ import expressQueue from 'express-queue'
 import verify from './utils/verifyFigmaUser'
 import screenshot from './screen-capture/screenshot'
 import { SELECTED_DEVICES } from './constants/devices'
+import takeScreenshot from './screenshot'
 
 const app = express()
 const PORT = process.env.PORT || 4000
@@ -52,12 +53,18 @@ app.post('/snap', async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*')
   res.send(JSON.stringify(data))
 })
+
+app.post('/v2/screenshot', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*')
+
   if (!verify(req)) {
-    console.log('\nDenying access for:', req.body);
-    res.set('Access-Control-Allow-Origin', '*');
-    return res.status(403).json({ error: 'You are not a verified Figma user.' });
+    const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress
+    const userAgent = req.get('User-Agent')
+    console.log(`\nDenying access for IP: ${clientIp}, User-Agent: ${userAgent}`)
+    return res.status(403).json({ error: 'You are not a verified Figma user.' })
   }
-  const data = await screenshot(req.body);
-  res.set('Access-Control-Allow-Origin', '*');
-  res.send(JSON.stringify(data));
-});
+
+  const data = await takeScreenshot(req.body)
+  res.set('Access-Control-Allow-Origin', '*')
+  res.send(JSON.stringify(data))
+})

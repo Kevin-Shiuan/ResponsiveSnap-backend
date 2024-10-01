@@ -5,3 +5,9 @@ export type DeviceSettings = {
   fullPage: boolean
 }
 
+export interface ScreenShotData {
+  name: string
+  width: number
+  height: number
+  data: uint8Array[]
+}
