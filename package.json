@@ -18,7 +18,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-queue": "^0.0.13",
-    "playwright": "^1.33.0",
+    "playwright": "^1.47.2",
     "sharp": "^0.33.4"
   },
   "devDependencies": {
