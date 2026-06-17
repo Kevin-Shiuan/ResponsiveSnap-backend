@@ -14,8 +14,8 @@ app.use(express.json())
 app.use(cors({ origin: true, credentials: true }))
 app.use(lineUp)
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}, http://localhost:${PORT}`)
+app.listen(Number(PORT), '0.0.0.0', () => {
+  console.log(`Server listening on 0.0.0.0:${PORT}`)
 })
 
 // enable pre-flight across-the-board
